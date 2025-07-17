@@ -39,3 +39,4 @@ stm32\main.o: ../Core/Inc/tim.h
 stm32\main.o: ../Core/Inc/usart.h
 stm32\main.o: ../Core/Inc/gpio.h
 stm32\main.o: ../Core/Inc/angle_ctrl.h
+stm32\main.o: ..\MDK-ARM\fuzzypid.h

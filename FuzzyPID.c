@@ -154,11 +154,6 @@ void Fuzzytrans(float _Set_Vaule,float _Measure_Vaule,float pre_Measure_Vaule)
 	FPID.minimum=0;
 	FuzzyComputation(&FPID,_Measure_Vaule);
 }
-void Calculatetimer(float cal_time)
-{
-	
-	//HAL_UART_Transmit(&huart2, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-}
 
 void Send_PID_Log(float kp, float ki, float kd, float time_ms)
 {
@@ -168,4 +163,14 @@ void Send_PID_Log(float kp, float ki, float kd, float time_ms)
     HAL_UART_Transmit(&huart2, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 
+void DWT_Init(void)
+{
+    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;  // Enable trace and debug
+    DWT->CYCCNT = 0;                                 // Reset counter
+    DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;             // Enable CYCCNT
+}
 
+uint32_t DWT_GetUs(void)
+{
+    return DWT->CYCCNT / (SystemCoreClock / 1000000);  // us level
+}

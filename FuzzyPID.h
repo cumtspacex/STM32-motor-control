@@ -1,11 +1,12 @@
-#ifndef __FUZZYPID_H
+#ifndef FUZZYPID_H
+#define FUZZYPID_H
+
 #include <stdint.h>
-#define __FUZZYPID_H
 
 
 //#include "pid.h"
 
-//????PID???
+//PID
 typedef struct
 {
  float setVaule;  
@@ -28,6 +29,8 @@ extern FUZZYPID FPID;
 
 void Fuzzytrans(float _Set_Vaule,float _Measure_Vaule,float pre_Measure_Vaule);
 void Calculatetimer(float cal_time, uint8_t *Array, uint16_t Length);
-
+void DWT_Init(void);
+uint32_t DWT_GetUs(void);
+	
 #endif
 
